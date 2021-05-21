@@ -5,6 +5,7 @@ open System.Windows.Forms
 open System.Drawing
 open System.Windows
 open System.Text.RegularExpressions
+open System.IO
 
 module Global =
     let saveFile = @"c:\dev\temp\dotnetdates.txt"
@@ -15,17 +16,19 @@ module Global =
         lbl.AutoSize <- true
         lbl
 
-    let private copyToClipboard2 (lbl: Label) =
-        let reg = Regex.Replace(lbl.Text, "ToString", "_")
-        //let reg2 = Regex.Replace(reg, "\"\)", "")
-        MessageBox.Show(reg) |> ignore
-        //Clipboard.SetText(reg)
+    let private copyToClipboard (lbl: Label) =
+        let orig = lbl.Text
+        let rep = Regex.Replace(lbl.Text, "ToString\(\"", "")
+        let reg = Regex.Replace(rep, "\"\)", "")
+        Clipboard.SetText(reg)
         lbl.Text <- "Copied!"
+        lbl.Refresh()
+        System.Threading.Thread.Sleep(1000)
+        lbl.Text <- orig
 
     let headerLabel str =
         let lbl = basicLabel str
         let headerFont = new Font("Consolas", 16.f)
-        //lbl.DoubleClick.Add(fun x -> copyToClipboard2 lbl)
         lbl.Font <- headerFont
         lbl
 
@@ -34,6 +37,7 @@ module Global =
         let boldFont = new Font("Consolas", 14.f, FontStyle.Bold)
         lbl.Font <- boldFont
         lbl.ForeColor <- Color.FromArgb(0, 153, 76)
+        lbl.DoubleClick.Add(fun x -> copyToClipboard lbl )
         lbl
 
     let toFormat format result = 
