@@ -7,8 +7,8 @@
 
   <ItemGroup>
     <Compile Include="Global.fs" />
-    <Compile Include="CreateYourOwn.fs" />
     <Compile Include="CustomFormats.fs" />
+    <Compile Include="CreateYourOwn.fs" />
     <Compile Include="FormatMethods.fs" />
     <Compile Include="FormatSpecifiers.fs" />
     <Compile Include="FormBuilder.fs" />

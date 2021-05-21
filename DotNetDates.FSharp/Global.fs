@@ -5,6 +5,7 @@ open System.Windows.Forms
 open System.Drawing
 
 module Global =
+    let saveFile = @"c:\dev\temp\dotnetdates.txt"
     let basicLabel str = 
         let lbl = new Label()
         lbl.Font <- new Font("Consolas", 12.0f) 
@@ -22,6 +23,7 @@ module Global =
         let lbl = basicLabel str
         let boldFont = new Font("Consolas", 14.f, FontStyle.Bold)
         lbl.Font <- boldFont
+        lbl.ForeColor <- Color.FromArgb(0, 153, 76)
         lbl
 
     let toFormat format result = 
@@ -33,4 +35,3 @@ module Global =
         panel.Controls.Add(lbl1)
         panel.Controls.Add(lbl2)
         panel
-
