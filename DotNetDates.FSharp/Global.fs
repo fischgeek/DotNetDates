@@ -3,6 +3,8 @@
 open System
 open System.Windows.Forms
 open System.Drawing
+open System.Windows
+open System.Text.RegularExpressions
 
 module Global =
     let saveFile = @"c:\dev\temp\dotnetdates.txt"
@@ -13,9 +15,17 @@ module Global =
         lbl.AutoSize <- true
         lbl
 
+    let private copyToClipboard2 (lbl: Label) =
+        let reg = Regex.Replace(lbl.Text, "ToString", "_")
+        //let reg2 = Regex.Replace(reg, "\"\)", "")
+        MessageBox.Show(reg) |> ignore
+        //Clipboard.SetText(reg)
+        lbl.Text <- "Copied!"
+
     let headerLabel str =
         let lbl = basicLabel str
         let headerFont = new Font("Consolas", 16.f)
+        //lbl.DoubleClick.Add(fun x -> copyToClipboard2 lbl)
         lbl.Font <- headerFont
         lbl
 
