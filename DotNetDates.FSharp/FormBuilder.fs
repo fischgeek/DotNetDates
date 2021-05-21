@@ -15,7 +15,7 @@ module FormBuilder =
         flp.FlowDirection <- FlowDirection.TopDown
         flp.AutoScroll <- true
         flp.WrapContents <- false
-        flp.Width <- baseWidth
+        //flp.Width <- baseWidth
         flp.BackColor <- backColor
         flp.ForeColor <- foreColor
 
