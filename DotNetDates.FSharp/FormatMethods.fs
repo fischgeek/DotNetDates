@@ -2,7 +2,6 @@
 
 open System
 open System.Windows.Forms
-open System.Drawing
 open Global
 
 module FormatMethods = 

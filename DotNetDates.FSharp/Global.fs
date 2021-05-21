@@ -1,14 +1,12 @@
 ﻿namespace DotNetDates.FSharp
 
-open System
 open System.Windows.Forms
 open System.Drawing
-open System.Windows
 open System.Text.RegularExpressions
-open System.IO
 
 module Global =
     let saveFile = @"c:\dev\temp\dotnetdates.txt"
+
     let basicLabel str = 
         let lbl = new Label()
         lbl.Font <- new Font("Consolas", 12.0f) 

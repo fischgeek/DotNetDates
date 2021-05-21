@@ -2,7 +2,6 @@
 
 open System.Windows.Forms
 open System.Drawing
-open Global
 open FormatMethods
 open FormatSpecifiers
 open CustomFormats
@@ -11,11 +10,10 @@ open CreateYourOwn
 module FormBuilder =
     let private backColor = Color.FromArgb(24, 26, 27)
     let private foreColor = Color.FromArgb(211, 207, 201)
-    let private configurePanel (flp: FlowLayoutPanel) (baseWidth: int) = 
+    let private configurePanel (flp: FlowLayoutPanel) = 
         flp.FlowDirection <- FlowDirection.TopDown
         flp.AutoScroll <- true
         flp.WrapContents <- false
-        //flp.Width <- baseWidth
         flp.BackColor <- backColor
         flp.ForeColor <- foreColor
 
@@ -31,9 +29,9 @@ module FormBuilder =
         (flpCreateYourOwn: FlowLayoutPanel)
         (flpCreateYourOwnResult: FlowLayoutPanel) = 
             configureForm frm
-            configurePanel flpFormatMethods 250
-            configurePanel flpFormatSpecifiers 700
-            configurePanel flpCustomFormats 250
+            configurePanel flpFormatMethods
+            configurePanel flpFormatSpecifiers
+            configurePanel flpCustomFormats
             ConfigureCreateYourOwnPanel flpCreateYourOwn flpCreateYourOwnResult flpCustomFormats
             AddMethods flpFormatMethods
             AddSpecifiers flpFormatSpecifiers
