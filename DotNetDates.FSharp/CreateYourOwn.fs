@@ -5,6 +5,7 @@ open System
 open System.IO
 open System.Drawing
 open System.Windows.Forms
+open System.Globalization
 open Global
 open CustomFormats
 
@@ -21,16 +22,16 @@ module CreateYourOwn =
         txt.Width <- 200
         txt
 
-    let TextboxChangedText (txt: TextBox) (lbl: Label) = 
-        let fmt = txt.Text
-        let dtResult = 
-            try DateTime.Now.ToString(fmt)
-            with exn -> "Unrecognized format."
-        lbl.Text <- dtResult
-
     let private saveToCustom (txt: TextBox) (resLbl: Label) (flpCustom: FlowLayoutPanel) = 
         File.AppendAllText(saveFile, txt.Text + "\r\n")
         AddCustomFormats flpCustom
+
+    let TextboxChangedText (txt: TextBox) (lbl: Label) = 
+        let fmt = txt.Text
+        let dtResult = 
+            try DateTime.Now.ToString(fmt, CultureInfo.InvariantCulture)
+            with exn -> "Unrecognized format."
+        lbl.Text <- dtResult
 
     let ConfigureCreateYourOwnPanel (flp: FlowLayoutPanel) (flpResult: FlowLayoutPanel) (flpCustom: FlowLayoutPanel) = 
         let lbl = basicLabel """DateTime.Now.ToString(" """
